@@ -1,9 +1,6 @@
 name: Build
 on:
   workflow_dispatch:
-  push:
-    branches:
-    - v*
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -38,7 +35,6 @@ jobs:
         '${{ github.ref_name }}'
         --repo '${{ github.repository }}'
         --notes ""
-        -t 'Release ${{ github.ref_name }}'
     - name: Upload artifact signatures to GitHub Release
       env:
         GITHUB_TOKEN: ${{ github.token }}
